@@ -2,26 +2,42 @@ package ua.hillel;
 
 
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.stereotype.Component;
 
 
+@Component
 public class ProductRepository {
 	
-	private HashMap<Integer, String>  products;
+	private static List <Product> products = new ArrayList<>();
+
+	
+
+
+
+	public Product findById (int id ) {
 		
-	public ProductRepository(HashMap<Integer, String> products) {
+		for(Product p : products) {
+			if (p.getId() == id) {
+				return p;
+			}
+		}
 		
-		this.products = products;
+		return null;
 	}
 
-	public String findById (Product prod ) {
-		return this.products.get(prod.getId());
-		
+	
+	public List <Product> getAllProduct () {
+		return products;
 	}
 
-	public HashMap<Integer, String> getAllProducts(){
-		return this.products;
+
+	public List<Product> getProducts() {
+		return products;
 	}
+	
 	
 	
 
